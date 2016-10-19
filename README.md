@@ -16,3 +16,4 @@ Sources
 =======
 
 Author: Armin Ronacher Source: http://flask.pocoo.org/docs/0.11/quickstart/
+Author: codegeek Source: http://stackoverflow.com/questions/13081532/how-to-return-json-using-flask-web-framework
