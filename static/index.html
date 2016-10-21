@@ -55,6 +55,7 @@ limitations under the License.
 <script src="json2.js"></script>
 </head> 
 <body bgcolor="black" height="100%" width="100%"> 
+<img id= "unicorn" src="photos/unicorn.png" style="display: none;"/>
 <canvas id="c" width="100%" height="100%" style="-webkit-tap-highlight-color: transparent;"></canvas> 
 <script>
 var canvas = document.getElementById('c');
@@ -104,6 +105,18 @@ function drawCircle(context,entity) {
   }
 }
 
+function drawUnicorn(context, entity){
+  var img = document.getElementById("unicorn");
+  with(context){
+    var x = entity["x"];
+    var y = entity["y"];
+    x -= img.naturalWidth/2;
+    y -= img.naturalHeight/2;
+    drawImage(img, x, y);
+  }
+
+}
+
 function prepEntity(entity) {
   if (!entity["colour"]) {
     entity["colour"] = "#FF0000";
@@ -128,7 +141,7 @@ function renderFrame() {
   clearFrame();
   for (var key in world) {
     var entity = world[key];
-    drawCircle(context,prepEntity(entity));
+    drawCircle(context,prepEntity(entity)
   }
 }
 
@@ -294,8 +307,8 @@ mouse.mousedraggers.push(function(x,y,clicked,e) {
 
 function update() {
   sendJSONXMLHTTPRequest("http://"+host+"/world", "", function(text){
-      	world = JSON.parse(text);	
-	drawNextFrame();
+      world = JSON.parse(text);	
+      drawNextFrame();
       });
   drawFrame();
 }
